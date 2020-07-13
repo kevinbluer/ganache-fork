@@ -4,13 +4,13 @@ This project demonstrates forking an existing chain to a local instance of [gana
 
 ## Setup
 
-Assuming you're using `yarn`, you'll be able to install the dependencies as followsL
+Assuming you're using `yarn`, you'll be able to install the dependencies as follows:
 
 ```
 yarn
 ```
 
-You'll then need to create a `.env` file in the root of the project and set the environment variables as follows (with `RPC_URL` and `NETWORK_ID` matching those of the network from which you wish to fork from).
+You'll then need to create a `.env` file in the root of the project and set the environment variables as follows (with `RPC_URL` and `NETWORK_ID` matching those of the network from which you wish to fork from):
 
 ```
 RPC_URL=http://my-rpc-node
@@ -25,7 +25,7 @@ If the example contracts (e.g. `SimpleStorage`) aren't already deployed to the s
 truffle migrate --network source
 ```
 
-After this it will be worth setting a value to the `storedData` state variable in the contract, so you'll be able to both see it and set it within the forked instance.
+After this it will be worth setting a value to the `storedData` state variable in the contract, so you'll be able to see it and set it within the forked instance.
 
 ```
 truffle console --network fork
@@ -41,15 +41,20 @@ Assuming the above steps worked correctly you're now ready to fork the original 
 npm run fork
 ```
 
-And then connect to this now locally running forked instance with the following. You'll note the value *should* be the same as to what you set it on the source network.
+Then connect to this now locally running forked instance with the following.
 
 ```
 truffle console --network fork
+```
+
+You'll note the value *should* be the same as to what you set it on the source network.
+
+```
 let i = await SimpleStorage.deployed()
 i.get()
 ```
 
-We can now update this value without ever the source network.
+We can now update this value without ever touching the source network.
 
 ```
 i.set(24)
